@@ -1,5 +1,4 @@
-import mtgLogo from "./MTG.webp";
-import plusIcon from "./plus.svg";
+
 import "./App.css";
 import { useEffect, useState } from "react";
 import { db } from "./api/firebase";
@@ -94,11 +93,11 @@ function App() {
       {" "}
       <div className={`overlay ${isInputFieldsOpen ? "active" : ""}`}></div>
       <div className="nav">
-        <img src={mtgLogo} className="logo" alt="Vite logo" />
+        <img src="./MTG.webp" className="logo" alt="Vite logo" />
         <div className="group">
           <button className="term-button" onClick={handleInputFieldsToggle}>
             <img
-              src={plusIcon}
+              src="./plus.svg"
               className={`plus-icon ${isInputFieldsOpen ? "open" : ""}`}
               alt="Plus icon"
             />
