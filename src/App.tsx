@@ -79,6 +79,7 @@ function App() {
       const data = snapshot.val();
       if (data) {
         const dataArray: Term[] = Object.values(data);
+        dataArray.sort((a, b) => a.name.localeCompare(b.name));
         setFirebaseData(dataArray);
       }
     });
@@ -86,8 +87,6 @@ function App() {
       off(dbRef);
     };
   }, []);
-
-  console.log(firebaseData);
 
   return (
     <>
@@ -107,6 +106,7 @@ function App() {
             <div className="inputFields">
               <h2 className="inputTitle">Uitleg toevoegen</h2>
               <input
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
                 type="text"
                 placeholder="Naam"
                 value={newTermName}
@@ -126,6 +126,7 @@ function App() {
           )}
           <button className="search">
             <input
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
               type="text"
               placeholder="Zoek een term ..."
               value={searchTerm}
