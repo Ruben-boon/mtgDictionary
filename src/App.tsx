@@ -1,5 +1,5 @@
-import mtgLogo from "/MTG.webp";
-import plusIcon from "/plus.svg";
+import mtgLogo from "./MTG.webp";
+import plusIcon from "./plus.svg";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { db } from "./api/firebase";
@@ -87,6 +87,7 @@ function App() {
       off(dbRef);
     };
   }, []);
+
 
   return (
     <>
