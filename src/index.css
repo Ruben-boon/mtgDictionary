@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&family=Work+Sans:wght@400;500;600;700;800;900&display=swap');
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "open sans", system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -18,11 +19,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.25;
   margin: 0;
   font-size: 16px;
+  font-family: 'open sans', sans-serif;
+
 }
 p, input, textarea {
   margin: 0;
   font-size: 14px;
-  font-family: 'inter';
+  font-family: 'open sans', sans-serif;
 }
 a {
   font-weight: 500;
