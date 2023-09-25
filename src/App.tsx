@@ -1,8 +1,8 @@
-
 import "./App.css";
 import { useEffect, useState } from "react";
 import { db } from "./api/firebase";
 import { ref, onValue, off, push } from "firebase/database";
+import useScrollDirection from "./hooks/useScrollDirection";
 
 interface Term {
   name: string;
@@ -14,13 +14,17 @@ function App() {
   const [newTermName, setNewTermName] = useState("");
   const [newTermDescription, setNewTermDescription] = useState("");
   const [isInputFieldsOpen, setInputFieldsOpen] = useState(false);
+
   const [firebaseData, setFirebaseData] = useState<Term[]>([]);
   const [nameError, setNameError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
 
+  const scrollDirection = useScrollDirection();
+
   const filteredData = firebaseData.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
 
   const handleInputFieldsToggle = () => {
     setInputFieldsOpen(!isInputFieldsOpen);
@@ -33,23 +37,19 @@ function App() {
 
   const validateInputs = () => {
     let isValid = true;
-
-    // Reset error messages
     setNameError("");
     setDescriptionError("");
-
     if (!newTermName) {
       setNameError("Naam is verplicht");
       isValid = false;
     }
-
     if (!newTermDescription) {
       setDescriptionError("Uitleg is verplicht");
       isValid = false;
     }
-
     return isValid;
   };
+
 
   const handleAddTerm = () => {
     const isValid = validateInputs();
@@ -63,7 +63,6 @@ function App() {
       push(dbRef, newData)
         .then(() => {
           console.log("Data pushed successfully");
-          // Close the input fields after successful submission
           handleInputFieldsToggle();
         })
         .catch((error) => {
@@ -87,12 +86,10 @@ function App() {
     };
   }, []);
 
-
   return (
     <>
       {" "}
-      <div className={`overlay ${isInputFieldsOpen ? "active" : ""}`}></div>
-      <div className="nav">
+      <div className={`nav ${ scrollDirection === "down" ? "hide" : "show"}`}>
         <img src="./MTG.webp" className="logo" alt="Vite logo" />
         <div className="group">
           <button className="term-button" onClick={handleInputFieldsToggle}>
@@ -124,6 +121,8 @@ function App() {
               </div>
             </div>
           )}
+          <div className={`overlay ${isInputFieldsOpen ? "active" : ""}`}></div>
+
           <button className="search">
             <input
               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"

@@ -1,5 +1,5 @@
 .nav {
-  position: fixed;
+  position: sticky;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -8,11 +8,14 @@
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 18px;
-
+  transition-duration: 350ms;
   width: 100%;
   background-color: white;
   padding-bottom: 18px;
   align-items: center;
+}
+.nav.hide {
+  top: -190px;
 }
 .logo {
   width: 200px;
@@ -28,7 +31,6 @@
   padding-left: 16px;
   padding-right: 16px;
   gap: 16px;
-
 }
 .dataItem {
   background-color: white;
@@ -74,7 +76,6 @@ input {
   height: 100%;
   color: black;
   border-radius: 50px;
-
 }
 input:hover,
 input:active,
@@ -100,11 +101,9 @@ input:focus {
 .term-button:focus,
 .inputfields input:hover,
 .inputfields input:active,
-.inputfields input:focus 
-.inputfields textarea:hover,
+.inputfields input:focus .inputfields textarea:hover,
 .inputfields textarea:active,
 .inputfields textarea:focus {
-
   border: 1px solid transparent;
   outline: transparent;
 }
@@ -130,17 +129,18 @@ input:focus {
   gap: 16px;
   z-index: 5;
 }
-.inputFields input, .inputFields textarea {
+.inputFields input,
+.inputFields textarea {
   border: 1px solid black;
   border-radius: 8px;
   height: 50px;
   padding-left: 16px;
   background-color: transparent;
-  color:black
+  color: black;
 }
 .inputFields textarea {
   padding-top: 16px;
-  height:150px;
+  height: 150px;
 }
 .inputTitle {
   font-size: 18px;
